@@ -32,4 +32,20 @@ public class ExpenseServiceImpl implements ExpenseService {
         expenseRepo.deleteById(id);
     }
 
+    @Override
+    public Expense addExpenseDetails(Expense expense) {
+        return expenseRepo.save(expense);
+    }
+
+    @Override
+    public Expense updateExpenseDetails(Long id, Expense expense) {
+        Expense existingExpense = getExpenseById(id);
+        existingExpense.setName(expense.getName() != null ? expense.getName() : existingExpense.getName());
+        existingExpense.setDescription(expense.getDescription() != null ? expense.getName() : existingExpense.getName());
+        existingExpense.setCategory(expense.getCategory() != null ? expense.getCategory() : existingExpense.getCategory());
+        existingExpense.setDate(expense.getDate() != null ? expense.getDate() : existingExpense.getDate());
+        existingExpense.setAmount(expense.getAmount() != null ? expense.getAmount() : existingExpense.getAmount());
+        return expenseRepo.save(existingExpense);
+    }
+
 }

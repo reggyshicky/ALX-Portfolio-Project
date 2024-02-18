@@ -27,8 +27,14 @@ public class ExpenseController {
     }
 
     @PostMapping("/expenses")
-    public void addExpenseDetails(@RequestBody Expense expense) {
-        System.out.println("printing the expense details " + expense);
+    public Expense addExpenseDetails(@RequestBody Expense expense) {
+        return expenseService.addExpenseDetails((expense));
     }
+
+    @PutMapping("/expenses/{id}")
+    public Expense updateExpenseDetails(@RequestBody Expense expense, @PathVariable Long id) {
+        return expenseService.updateExpenseDetails(id, expense);
+    }
+
 
 }
