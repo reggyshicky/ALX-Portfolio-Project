@@ -3,6 +3,7 @@ package com.reginah.Expensetrackerapi.controller;
 import com.reginah.Expensetrackerapi.entity.Expense;
 import com.reginah.Expensetrackerapi.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,12 +21,13 @@ public class ExpenseController {
     public Expense getExpenseById(@PathVariable() Long id) {
         return expenseService.getExpenseById(id);
     }
-
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
     @DeleteMapping("/expenses")
     public  void deleteExpenseById(@RequestParam() Long id) {
         expenseService.deleteExpenseById(id);
     }
 
+    @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping("/expenses")
     public Expense addExpenseDetails(@RequestBody Expense expense) {
         return expenseService.addExpenseDetails((expense));
