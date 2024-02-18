@@ -14,21 +14,37 @@ import java.util.List;
 public class ExpenseController {
     @Autowired
     private ExpenseService expenseService;
-    @GetMapping("/expenses")
-    public Page<Expense> getAllExpenses(Pageable page) {
 
-        return expenseService.getAllExpenses(page);
-    }
+    //Original without Pagination
 
-//    @GetMapping("/expenses")
+    //    @GetMapping("/expenses")
 //    public List<Expense> getAllExpenses() {
 //        return expenseService.getAllExpenses();
 //    }
+
+
+//PAGINATION
+//    @GetMapping("/expenses")
+//    public Page<Expense> getAllExpenses(Pageable page) {
+//
+//        return expenseService.getAllExpenses(page);
+//    }
+
+    //alternative, removing the pageable object of the API response
+    @GetMapping("/expenses")
+    public List<Expense> getAllExpenses(Pageable page) {
+
+        return expenseService.getAllExpenses(page).toList();
+    }
+
+
 
     @GetMapping("/expenses/{id}")
     public Expense getExpenseById(@PathVariable() Long id) {
         return expenseService.getExpenseById(id);
     }
+
+
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     @DeleteMapping("/expenses")
     public  void deleteExpenseById(@RequestParam() Long id) {
