@@ -22,9 +22,8 @@ public class ExpenseController {
     }
 
     @DeleteMapping("/expenses")
-    public String deleteExpenseById(@RequestParam() Long id) {
-        return "Deleting the expense object by its id" + id;
-
+    public  void deleteExpenseById(@RequestParam() Long id) {
+        expenseService.deleteExpenseById(id);
     }
 
 }
