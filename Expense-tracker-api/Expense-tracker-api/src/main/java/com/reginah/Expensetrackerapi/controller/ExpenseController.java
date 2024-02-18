@@ -26,4 +26,9 @@ public class ExpenseController {
         expenseService.deleteExpenseById(id);
     }
 
+    @PostMapping("/expenses")
+    public void addExpenseDetails(@RequestBody Expense expense) {
+        System.out.println("printing the expense details " + expense);
+    }
+
 }
