@@ -30,7 +30,8 @@ public class ExpenseController {
 //        return expenseService.getAllExpenses(page);
 //    }
 
-    //alternative, removing the pageable object of the API response
+    //alternative, removing
+    // the pageable object of the API response
     @GetMapping("/expenses")
     public List<Expense> getAllExpenses(Pageable page) {
 
