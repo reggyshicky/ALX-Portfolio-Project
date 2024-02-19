@@ -34,6 +34,8 @@ public class ExpenseController {
     // the pageable object of the API response
     @GetMapping("/expenses")
     public List<Expense> getAllExpenses(Pageable page) {
+//        int number = 1;
+//        calculateFactorial(number);
 
         return expenseService.getAllExpenses(page).toList();
     }
@@ -61,5 +63,10 @@ public class ExpenseController {
     @PutMapping("/expenses/{id}")
     public Expense updateExpenseDetails(@RequestBody Expense expense, @PathVariable Long id) {
         return expenseService.updateExpenseDetails(id, expense);
+    }
+
+    //Test General Exception handling
+    public int calculateFactorial(int number) {
+        return number * calculateFactorial(number -1);
     }
 }
