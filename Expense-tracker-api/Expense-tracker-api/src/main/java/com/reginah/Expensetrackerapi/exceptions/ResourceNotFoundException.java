@@ -1,6 +1,6 @@
 package com.reginah.Expensetrackerapi.exceptions;
 
-public class ExpenseNotFoundException extends RuntimeException{
+public class ResourceNotFoundException extends RuntimeException{
     private static final long serialVersionUID = 1L;
     //serialVersionUID is a special static field that is used during to identifyy the version
     //of the class that was serialized. It is used during the deserialization process to ensure that the sender
@@ -9,7 +9,7 @@ public class ExpenseNotFoundException extends RuntimeException{
     // If the serialVersionUID of the class at the time of serialization does not match the serialVersionUID of the class at the time of
     // deserialization, an InvalidClassException will be thrown.
 
-    public ExpenseNotFoundException(String message) {
+    public ResourceNotFoundException(String message) {
         super(message);
     }
 

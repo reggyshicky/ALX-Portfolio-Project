@@ -1,14 +1,13 @@
 package com.reginah.Expensetrackerapi.service;
 
 import com.reginah.Expensetrackerapi.entity.Expense;
-import com.reginah.Expensetrackerapi.exceptions.ExpenseNotFoundException;
+import com.reginah.Expensetrackerapi.exceptions.ResourceNotFoundException;
 import com.reginah.Expensetrackerapi.repository.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,7 +25,7 @@ public class ExpenseServiceImpl implements ExpenseService {
         if (expense.isPresent()) {
             return expense.get();
         } else {
-            throw new ExpenseNotFoundException("Expense is not found for the id " + id);
+            throw new ResourceNotFoundException("Expense is not found for the id " + id);
         }
     }
 
