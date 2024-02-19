@@ -2,6 +2,7 @@ package com.reginah.Expensetrackerapi.controller;
 
 import com.reginah.Expensetrackerapi.entity.Expense;
 import com.reginah.Expensetrackerapi.service.ExpenseService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -56,7 +57,7 @@ public class ExpenseController {
 
     @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping("/expenses")
-    public Expense addExpenseDetails(@RequestBody Expense expense) {
+    public Expense addExpenseDetails(@Valid @RequestBody Expense expense) {
         return expenseService.addExpenseDetails((expense));
     }
 

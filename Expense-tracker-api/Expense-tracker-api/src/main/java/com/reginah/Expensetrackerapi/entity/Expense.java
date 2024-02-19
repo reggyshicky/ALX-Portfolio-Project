@@ -1,6 +1,8 @@
 package com.reginah.Expensetrackerapi.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,8 @@ public class Expense {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "expense_name")
+    @NotNull(message = "Expense name must not be null")
+    @Size(min=3, message = "Expense name must be atleast 3 characters")
     private String name;
 
     private String description;
