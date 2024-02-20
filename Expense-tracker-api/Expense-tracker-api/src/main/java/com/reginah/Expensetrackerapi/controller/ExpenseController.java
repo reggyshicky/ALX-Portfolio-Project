@@ -70,4 +70,9 @@ public class ExpenseController {
     public int calculateFactorial(int number) {
         return number * calculateFactorial(number -1);
     }
+
+    @GetMapping("/expenses/category")
+    public List<Expense> getExpensesByCategory(@RequestParam String category, Pageable page) {
+        return expenseService.readByCategory(category, page);
+    }
 }
