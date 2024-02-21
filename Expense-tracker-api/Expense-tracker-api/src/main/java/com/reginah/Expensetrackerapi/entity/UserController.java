@@ -1,6 +1,7 @@
 package com.reginah.Expensetrackerapi.entity;
 
 import com.reginah.Expensetrackerapi.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<User> add(@RequestBody UserModel user) {
+    public ResponseEntity<User> add(@Valid @RequestBody UserModel user) {
         return new ResponseEntity<User>(userService.createUser(user), HttpStatus.CREATED);
     }
 }
