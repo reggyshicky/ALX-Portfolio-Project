@@ -21,7 +21,7 @@ public class User {
     private Long id;
 
     private String name;
-
+    //no such email in the db
     @Column(unique = true)
     private String email;
 
