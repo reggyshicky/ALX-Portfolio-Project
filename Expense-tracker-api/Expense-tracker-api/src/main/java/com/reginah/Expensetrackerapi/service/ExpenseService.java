@@ -19,4 +19,6 @@ public interface ExpenseService {
 
     List<Expense> readByCategory(String category, Pageable page);
 
+    List<Expense> readByName(String keyword, Pageable page);
+
 }

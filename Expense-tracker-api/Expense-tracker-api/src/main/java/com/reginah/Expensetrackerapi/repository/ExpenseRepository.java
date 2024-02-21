@@ -9,7 +9,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 
-    //SELECT * FROM tbl_expenses WHERE category=?
+    //SELECT * FROM tbl_expenses WHERE category=? -behind the scenes
     Page<Expense> findByCategory(String Category, Pageable page);
+
+    //SELECT * FROM tbl_expenses WHERE name LIKE '%keywords%' -'behind the scenes'
+    Page<Expense> findByNameContaining(String keyword, Pageable page);
+
+
 
 }
