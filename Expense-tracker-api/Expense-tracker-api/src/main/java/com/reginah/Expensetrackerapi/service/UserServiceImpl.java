@@ -3,6 +3,7 @@ package com.reginah.Expensetrackerapi.service;
 import com.reginah.Expensetrackerapi.entity.User;
 import com.reginah.Expensetrackerapi.entity.UserModel;
 import com.reginah.Expensetrackerapi.exceptions.ItemAlreadyExistsException;
+import com.reginah.Expensetrackerapi.exceptions.ResourceNotFoundException;
 import com.reginah.Expensetrackerapi.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,10 @@ public class UserServiceImpl implements UserService{
         User newUser = new User();
         BeanUtils.copyProperties(user, newUser);
         return userRepository.save(newUser);
+    }
+
+    @Override
+    public User readUser(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User not found for the id:"+id));
     }
 }
