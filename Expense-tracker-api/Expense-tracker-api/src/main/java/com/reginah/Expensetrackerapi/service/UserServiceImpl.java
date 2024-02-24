@@ -44,6 +44,4 @@ public class UserServiceImpl implements UserService{
         User user = readUser(id);
         userRepository.delete(user);
     }
-
-
 }
