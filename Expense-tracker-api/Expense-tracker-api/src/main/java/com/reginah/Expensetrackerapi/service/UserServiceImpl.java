@@ -13,19 +13,28 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService{
-    @Autowired
-    UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private PasswordEncoder bcryptEncoder;
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
     @Override
     public User createUser(UserModel user) {
-        if (userRepository.existsByEmail(user.getEmail())) {
-            throw new ItemAlreadyExistsException("User is already registered with email:"+user.getEmail());
+        if (userRepository.existsByEmail(user.email())) {
+            throw new ItemAlreadyExistsException("User is already registered with email:"+user.email());
         }
-        User newUser = new User();
-        BeanUtils.copyProperties(user, newUser);
-        newUser.setPassword(bcryptEncoder.encode(newUser.getPassword()));
+        var newUser = User.builder()
+                .name(user.name())
+                .password(passwordEncoder.encode(user.password()))
+                .age(user.age())
+                .email(user.email())
+                .build();
+//        User newUser = new User();
+//        BeanUtils.copyProperties(user, newUser);
+
         return userRepository.save(newUser);
     }
 
@@ -37,10 +46,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public User updateUser(UserModel user, Long id) {
         User existingUser = readUser(id);
-        existingUser.setName(user.getName() != null ? user.getName() : existingUser.getName());
-        existingUser.setPassword(user.getEmail() != null ? user.getEmail() : existingUser.getEmail());
-        existingUser.setPassword(user.getPassword() != null ? bcryptEncoder.encode(user.getPassword()) : existingUser.getPassword());
-        existingUser.setAge(user.getAge() != null ? user.getAge() : existingUser.getAge());
+        existingUser.setName(user.name() != null ? user.name() : existingUser.getName());
+        existingUser.setPassword(user.email() != null ? user.email() : existingUser.getEmail());
+        existingUser.setPassword(user.password() != null ? user.password() : existingUser.getPassword());
+        existingUser.setAge(user.age() != null ? user.age() : existingUser.getAge());
         return userRepository.save(existingUser);
     }
 
@@ -49,4 +58,11 @@ public class UserServiceImpl implements UserService{
         User user = readUser(id);
         userRepository.delete(user);
     }
+
+    @Override
+    public User findUserByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("No user found!"));
+    }
+
+
 }
