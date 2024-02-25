@@ -1,16 +1,18 @@
-package com.reginah.Expensetrackerapi.entity;
+package com.reginah.Expensetrackerapi.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
 
-//@Data
-public record  UserModel (
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public record UserDto(
     @NotBlank(message = "Name should not be empty")
     String name,
+
+    Long id,
 
     @NotNull(message = "Email should not be empty")
     @Column(unique = true)

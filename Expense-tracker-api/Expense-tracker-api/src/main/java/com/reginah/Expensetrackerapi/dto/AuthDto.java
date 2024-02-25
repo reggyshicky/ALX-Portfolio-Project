@@ -1,9 +1,9 @@
-package com.reginah.Expensetrackerapi.entity;
+package com.reginah.Expensetrackerapi.dto;
 
 import lombok.Data;
 
 @Data
-public class AuthModel {
+public class AuthDto {
     private String email;
     private String passWord;
 }

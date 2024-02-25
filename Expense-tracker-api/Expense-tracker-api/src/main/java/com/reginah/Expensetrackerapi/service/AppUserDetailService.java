@@ -2,9 +2,11 @@ package com.reginah.Expensetrackerapi.service;
 
 import com.reginah.Expensetrackerapi.auth.AppUserDetail;
 import com.reginah.Expensetrackerapi.entity.User;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,10 +19,9 @@ public class AppUserDetailService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.findUserByEmail(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userService.findUserByEmail(email);
         return new AppUserDetail(user);
     }
-
     //final property only has a getter
 }

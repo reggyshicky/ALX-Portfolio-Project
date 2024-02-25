@@ -1,5 +1,6 @@
 package com.reginah.Expensetrackerapi.service;
 
+import com.reginah.Expensetrackerapi.dto.ExpenseDto;
 import com.reginah.Expensetrackerapi.entity.Expense;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +15,7 @@ public interface ExpenseService {
 
     void deleteExpenseById(Long id);
 
-    Expense addExpenseDetails(Expense expense); //saveExpenseDetails
+    ExpenseDto addExpenseDetails(ExpenseDto expense, Long userId); //saveExpenseDetails
 
     Expense updateExpenseDetails(Long id, Expense expense);
 

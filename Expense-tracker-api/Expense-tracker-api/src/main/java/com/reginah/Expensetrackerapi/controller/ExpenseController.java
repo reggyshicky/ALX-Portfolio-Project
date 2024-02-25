@@ -1,5 +1,6 @@
 package com.reginah.Expensetrackerapi.controller;
 
+import com.reginah.Expensetrackerapi.dto.ExpenseDto;
 import com.reginah.Expensetrackerapi.entity.Expense;
 import com.reginah.Expensetrackerapi.service.ExpenseService;
 import jakarta.validation.Valid;
@@ -57,9 +58,9 @@ public class ExpenseController {
     }
 
     @ResponseStatus(value = HttpStatus.CREATED)
-    @PostMapping("/expenses")
-    public Expense addExpenseDetails(@Valid @RequestBody Expense expense) {
-        return expenseService.addExpenseDetails((expense));
+    @PostMapping("/expenses/{userId}")
+    public ExpenseDto addExpenseDetails(@Valid @RequestBody ExpenseDto expense, @PathVariable Long userId) {
+        return expenseService.addExpenseDetails(expense, userId);
     }
 
     @PutMapping("/expenses/{id}")

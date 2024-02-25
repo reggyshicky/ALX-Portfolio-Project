@@ -10,6 +10,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @Entity
@@ -39,4 +40,8 @@ public class User {
     @Column(name = "updated_at", nullable = false, updatable = false)
     @UpdateTimestamp
     private Timestamp updatedAt;
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Expense> expenses;
 }

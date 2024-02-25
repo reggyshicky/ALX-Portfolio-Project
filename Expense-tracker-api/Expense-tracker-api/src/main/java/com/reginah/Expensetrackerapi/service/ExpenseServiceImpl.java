@@ -1,5 +1,6 @@
 package com.reginah.Expensetrackerapi.service;
 
+import com.reginah.Expensetrackerapi.dto.ExpenseDto;
 import com.reginah.Expensetrackerapi.entity.Expense;
 import com.reginah.Expensetrackerapi.exceptions.ResourceNotFoundException;
 import com.reginah.Expensetrackerapi.repository.ExpenseRepository;
@@ -13,8 +14,14 @@ import java.util.Optional;
 
 @Service
 public class ExpenseServiceImpl implements ExpenseService {
-    @Autowired
-    private ExpenseRepository expenseRepo;
+    private final ExpenseRepository expenseRepo;
+    private final UserService userService;
+
+    public ExpenseServiceImpl(ExpenseRepository expenseRepo, UserService userService) {
+        this.expenseRepo = expenseRepo;
+        this.userService = userService;
+    }
+
     @Override
     public Page<Expense> getAllExpenses(Pageable page) {
         return expenseRepo.findAll(page);
@@ -37,8 +44,18 @@ public class ExpenseServiceImpl implements ExpenseService {
     }
 
     @Override
-    public Expense addExpenseDetails(Expense expense) {
-        return expenseRepo.save(expense);
+    public ExpenseDto addExpenseDetails(ExpenseDto expense, Long userId) {
+        var user = userService.readUser(userId);
+        var expenseToAdd = Expense.builder()
+                .user(user)
+                .name(expense.name())
+                .amount(expense.amount())
+                .description(expense.description())
+                .category(expense.category())
+                .date(expense.date())
+                .build();
+        var savedExpenses = expenseRepo.save(expenseToAdd);
+        return new ExpenseDto(savedExpenses.getName(), savedExpenses.getDescription(), savedExpenses.getAmount(), savedExpenses.getCategory(), savedExpenses.getDate());
     }
 
     @Override
