@@ -63,5 +63,5 @@ public class Expense {
     //optional -association is mandatory and the field can't be null
     //JoinColumn specifies the foreign key column (user_id) in the current entity's table that references the primary key of the associated Entity (User).
     //OnDelete - annotaton specifies the action to be taken by the db when the associated User entity is deleted.OnDeleteAction = CASCADE  indicates that if the referenced User entity is deleted, then all the associated entities should be deleted
-
+    //JsonIgnore - is used to ignore the user field when fetching expenses from the db
 }
