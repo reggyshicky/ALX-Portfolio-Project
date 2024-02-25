@@ -4,8 +4,10 @@ import com.reginah.Expensetrackerapi.service.AppUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -44,15 +46,20 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults()).build();
     }
 
-    private DaoAuthenticationProvider daoAuthenticationProvider () {
+    private DaoAuthenticationProvider daoAuthenticationProvider() {
         var daoProvider = new DaoAuthenticationProvider();
         daoProvider.setUserDetailsService(this.appUserDetailService);
         daoProvider.setPasswordEncoder(this.passwordEncoder);
         return daoProvider;
     }
+
+//    @Bean
+//    public AuthenticationManager authenticationManager(
+//            AuthenticationConfiguration authenticationConfiguration) throws Exception {
+//        return authenticationConfiguration.getAuthenticationManager();
+//    }
 //FLOW OF
 //    SpringSecurity -> DaoAuthothenProvider -> UserDetailService -> UserDetail -> userRepository -> User entity
-
 
 }
 

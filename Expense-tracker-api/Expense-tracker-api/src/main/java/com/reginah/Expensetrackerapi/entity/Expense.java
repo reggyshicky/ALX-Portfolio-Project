@@ -1,5 +1,6 @@
 package com.reginah.Expensetrackerapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -8,7 +9,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.UpdateTimestamp;
+import com.reginah.Expensetrackerapi.entity.User;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -48,4 +52,16 @@ public class Expense {
     @Column(name = "updated_at", nullable = false, updatable = false)
     @UpdateTimestamp
     private Timestamp updatedAt;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private User user;
+
+    //fetch attributes defines how the associated entity shld  be loaded from the database and FetchType.LAZY means that the associated entity will be loaded Lazily(i.e only when accessed
+    //optional -association is mandatory and the field can't be null
+    //JoinColumn specifies the foreign key column (user_id) in the current entity's table that references the primary key of the associated Entity (User).
+    //OnDelete - annotaton specifies the action to be taken by the db when the associated User entity is deleted.OnDeleteAction = CASCADE  indicates that if the referenced User entity is deleted, then all the associated entities should be deleted
+
 }
