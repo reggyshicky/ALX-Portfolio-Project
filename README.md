@@ -27,19 +27,19 @@ To get a copy of the project up and running on your local machine for developmen
 
 Before you begin, ensure you have met the following requirements:
 
-Java Development Kit (JDK): Install JDK version 8 or above. You can download it from Oracle's website or use a package manager like Homebrew (for macOS) or Chocolatey (for Windows).
-brew install openjdk@11
+- Java Development Kit (JDK): Install JDK version 8 or above. You can download it from Oracle's website or use a package manager like Homebrew (for macOS) or Chocolatey (for Windows).
+ brew install openjdk@11
 
-Apache Maven: Maven is a build automation tool used primarily for Java projects. You can download it from the Apache Maven website or use a package manager.
-brew install maven
-MySQL or MariaDB: Install either MySQL or MariaDB database server for development. You can download MySQL from the MySQL website or install MariaDB using a package manager.
-brew install mariadb
+- Apache Maven: Maven is a build automation tool used primarily for Java projects. You can download it from the Apache Maven website or use a package manager.
+ brew install maven
+- MySQL or MariaDB: Install either MySQL or MariaDB database server for development. You can download MySQL from the MySQL website or install MariaDB using a package manager.
+ brew install mariadb
 
-Git: Install Git to clone the project repository and manage version control.
-brew install git
+- Git: Install Git to clone the project repository and manage version control.
+  brew install git
 
-Integrated Development Environment (IDE): Choose an IDE of your preference for Java development. Some popular options include IntelliJ IDEA, Eclipse, and NetBeans.
-Once you have installed these prerequisites, you are ready to proceed with setting up and running the project.
+- Integrated Development Environment (IDE): Choose an IDE of your preference for Java development. Some popular options include IntelliJ IDEA, Eclipse, and NetBeans.
+  Once you have installed these prerequisites, you are ready to proceed with setting up and running the project.
 
 ## Deployment
 
@@ -73,12 +73,12 @@ Once the application is running, you can access it using the appropriate URL pro
 
 We welcome contributions to the Expense API project! Please follow these guidelines when contributing:
 
-Fork the repository and clone it locally.
-Create a new branch for your feature or bug fix.
-Make your changes and ensure that the code passes all tests.
-Commit your changes with clear and descriptive commit messages.
-Push your changes to your forked repository.
-Submit a pull request to the main repository, explaining the changes you've made.
+- Fork the repository and clone it locally.
+- Create a new branch for your feature or bug fix.
+- Make your changes and ensure that the code passes all tests.
+- Commit your changes with clear and descriptive commit messages.
+- Push your changes to your forked repository.
+- Submit a pull request to the main repository, explaining the changes you've made.
 By contributing to this project, you agree to abide by our code of conduct and contribute in a respectful manner.
 
 ## Authors
