@@ -62,12 +62,12 @@ Once the application is running, you can access it using the appropriate URL pro
 
 ## Built With
 
-Spring Boot - The web framework used for building Java-based applications and microservices. 
-Spring Security - Provides authentication and authorization support within the Spring framework. 
-PostgreSQL - An open-source relational database management system (RDBMS) used for storing and managing data in production environments. 
-MariaDB - An open-source RDBMS used for devel opment and testing environments. 
-Postman - A popular API testing tool used for testing APIs during development. 
-Swagger UI - A tool for API documentation, used to create comprehensive and user-friendly API documentation for your Expense API project.
+- Spring Boot - The web framework used for building Java-based applications and microservices. 
+- Spring Security - Provides authentication and authorization support within the Spring framework. 
+- PostgreSQL - An open-source relational database management system (RDBMS) used for storing and managing data in production environments. 
+- MariaDB - An open-source RDBMS used for devel opment and testing environments. 
+- Postman - A popular API testing tool used for testing APIs during development. 
+- Swagger UI - A tool for API documentation, used to create comprehensive and user-friendly API documentation for your Expense API project.
 
 ## Contributing
 
